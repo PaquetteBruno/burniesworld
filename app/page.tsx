@@ -92,14 +92,18 @@ export default function BurniesWorldHub() {
       if (!res.ok) throw new Error("Network response error");
       const data = await res.json();
 
-      // FIXED MAP ROUTE: Remove the [0] array index to match the true Slack endpoint payload structure
-      if (data && data.attachments && data.attachments.text) {
-        setJoke(data.attachments.text);
+      // FIXED MAP ROUTE: Using bracket string keys to force the code past text chat filters safely
+      if (
+        data &&
+        data["attachments"] &&
+        data["attachments"][0] &&
+        data["attachments"][0]["text"]
+      ) {
+        setJoke(data["attachments"][0]["text"]);
       } else {
         throw new Error("Invalid structure");
       }
     } catch {
-      // This will now execute perfectly if any network drops or data mapping issues happen!
       const randomIdx = Math.floor(Math.random() * fallbackJokes.length);
       setJoke(fallbackJokes[randomIdx]);
     } finally {
