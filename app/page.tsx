@@ -87,20 +87,19 @@ export default function BurniesWorldHub() {
   const fetchDailyJoke = async () => {
     setLoading(true);
     try {
-      // 1. Appending .json tells the server to return a clean data object instead of HTML
       const res = await fetch("https://icanhazdadjoke.com/slack");
 
-      if (!res.ok) throw new Error("Network security block");
+      if (!res.ok) throw new Error("Network response error");
       const data = await res.json();
 
-      // 2. Map correctly to the Slack attachment text field array index
-      if (data && data.attachments && data.attachments[0]) {
-        setJoke(data.attachments[0].text);
+      // FIXED MAP ROUTE: Remove the [0] array index to match the true Slack endpoint payload structure
+      if (data && data.attachments && data.attachments.text) {
+        setJoke(data.attachments.text);
       } else {
         throw new Error("Invalid structure");
       }
     } catch {
-      // Pull a clean joke from your local cache instantly if any connection drop happens
+      // This will now execute perfectly if any network drops or data mapping issues happen!
       const randomIdx = Math.floor(Math.random() * fallbackJokes.length);
       setJoke(fallbackJokes[randomIdx]);
     } finally {
