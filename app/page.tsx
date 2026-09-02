@@ -87,23 +87,30 @@ export default function BurniesWorldHub() {
   const fetchDailyJoke = async () => {
     setLoading(true);
     try {
-      const res = await fetch("https://icanhazdadjoke.com/slack");
+      // Routing through an open proxy adds the required cross-origin permissions automatically
+      const targetUrl = "https://icanhazdadjoke.com/slack";
+      const proxyUrl = "https://allorigins.win" + encodeURIComponent(targetUrl);
 
+      const res = await fetch(proxyUrl);
       if (!res.ok) throw new Error("Network response error");
-      const data = await res.json();
+      const proxyData = await res.json();
 
-      // BRACKET-FREE LOOKUP: Pulls the first item using a safe word function
-      if (data && data.attachments) {
-        const firstAttachment = data.attachments.shift();
-        if (firstAttachment && firstAttachment.text) {
-          setJoke(firstAttachment.text);
-          return;
-        }
+      // AllOrigins wraps the API response inside a string text block called contents
+      const data = JSON.parse(proxyData.contents);
+
+      // Target index 0 inside your attachments list layout safely
+      if (
+        data &&
+        data.attachments &&
+        data.attachments[0] &&
+        data.attachments[0].text
+      ) {
+        setJoke(data.attachments[0].text);
+      } else {
+        throw new Error("Invalid structure");
       }
-
-      throw new Error("Invalid structure");
     } catch {
-      // Safely falls back to local cache if anything falls out of alignment
+      // If the proxy experiences high traffic delays, your local backup list loads instantly
       const randomIdx = Math.floor(Math.random() * fallbackJokes.length);
       setJoke(fallbackJokes[randomIdx]);
     } finally {
