@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // 1. REUSABLE LINK TILE COMPONENT
 interface ProjectTileProps {
@@ -76,6 +76,7 @@ function ProjectTile({
 export default function BurniesWorldHub() {
   const [joke, setJoke] = useState("Scanning joke parameters...");
   const [loading, setLoading] = useState(true);
+
   const fallbackJokes = [
     "Why don't scientists trust atoms? Because they make up everything!",
     "A skeleton walks into a bar... and asks for a mop.",
@@ -84,18 +85,23 @@ export default function BurniesWorldHub() {
     "How many programmers does it take to change a light bulb? None, that's a hardware problem.",
     "What goes up and down but doesn't move? Stairs.",
   ];
+
   const fetchDailyJoke = async () => {
     setLoading(true);
 
     try {
       const res = await fetch("https://icanhazdadjoke.com/slack");
 
+      console.log("Response received:", res);
+
       if (!res.ok) {
         throw new Error("Network response error");
       }
 
       const data = await res.json();
-      console.log(data);
+
+      console.log("DATA:", data);
+
       if (data && data.attachments) {
         const firstAttachment = data.attachments[0];
 
@@ -106,7 +112,9 @@ export default function BurniesWorldHub() {
       }
 
       throw new Error("Invalid structure");
-    } catch {
+    } catch (error) {
+      console.error("Joke fetch failed:", error);
+
       const randomIdx = Math.floor(Math.random() * fallbackJokes.length);
 
       setJoke(fallbackJokes[randomIdx]);
@@ -114,6 +122,11 @@ export default function BurniesWorldHub() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchDailyJoke();
+  }, []);
+
   return (
     <main className="min-h-screen w-screen bg-[#020203] text-stone-300 font-sans flex flex-col justify-between items-center p-6 sm:p-12 relative overflow-x-hidden selection:bg-amber-950/40 selection:text-amber-400">
       {/* AMBIENT ATMOSPHERIC BACKGROUND RADIAL SHIELD */}
