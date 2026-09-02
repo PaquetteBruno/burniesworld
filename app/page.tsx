@@ -88,21 +88,21 @@ export default function BurniesWorldHub() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://icanhazdadjoke.com/", {
-        headers: {
-          Accept: "application/json",
-        },
-      });
+      const res = await fetch("https://icanhazdadjoke.com/slack");
 
       if (!res.ok) {
         throw new Error("Network response error");
       }
 
       const data = await res.json();
+      console.log(data);
+      if (data && data.attachments) {
+        const firstAttachment = data.attachments[0];
 
-      if (data && data.joke) {
-        setJoke(data.joke);
-        return;
+        if (firstAttachment && firstAttachment.text) {
+          setJoke(firstAttachment.text);
+          return;
+        }
       }
 
       throw new Error("Invalid structure");
