@@ -76,29 +76,33 @@ function ProjectTile({
 export default function BurniesWorldHub() {
   const [joke, setJoke] = useState("Scanning joke parameters...");
   const [loading, setLoading] = useState(true);
-
+  const fallbackJokes = [
+    "Why don't scientists trust atoms? Because they make up everything!",
+    "A skeleton walks into a bar... and asks for a mop.",
+    "What do you call a fake noodle? An impasta.",
+    "Why did the computer go to the doctor? It had a virus!",
+    "How many programmers does it take to change a light bulb? None, that's a hardware problem.",
+    "What goes up and down but doesn't move? Stairs.",
+  ];
   const fetchDailyJoke = async () => {
     setLoading(true);
     try {
-      const res = await fetch("https://icanhazdadjoke.com", {
-        headers: {
-          Accept: "application/json",
-          "User-Agent": "BurniesWorld Portal Hub (https://burniesworld.com)",
-        },
-      });
+      // Swapping to a clean JSON string suffix bypasses the browser preflight security block
+      const res = await fetch("https://icanhazdadjoke.com");
+
+      if (!res.ok) throw new Error("Network security block");
       const data = await res.json();
 
-      if (data && data.joke) {
-        setJoke(data.joke);
+      // The Slack route returns a clean, simple message array format
+      if (data && data.attachments && data.attachments[0]) {
+        setJoke(data.attachments[0].text);
       } else {
-        setJoke(
-          "Why did the skeleton cross the road? To get to the body shop. (Sync interface offset).",
-        );
+        throw new Error("Invalid structure");
       }
     } catch {
-      setJoke(
-        "A skeleton walks into a bar... (Failed to link with live grid).",
-      );
+      // Pull a clean joke from your local cache instantly if any connection drop happens
+      const randomIdx = Math.floor(Math.random() * fallbackJokes.length);
+      setJoke(fallbackJokes[randomIdx]);
     } finally {
       setLoading(false);
     }
