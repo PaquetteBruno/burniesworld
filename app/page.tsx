@@ -87,13 +87,13 @@ export default function BurniesWorldHub() {
   const fetchDailyJoke = async () => {
     setLoading(true);
     try {
-      // Swapping to a clean JSON string suffix bypasses the browser preflight security block
-      const res = await fetch("https://icanhazdadjoke.com");
+      // 1. Appending .json tells the server to return a clean data object instead of HTML
+      const res = await fetch("https://icanhazdadjoke.com/slack");
 
       if (!res.ok) throw new Error("Network security block");
       const data = await res.json();
 
-      // The Slack route returns a clean, simple message array format
+      // 2. Map correctly to the Slack attachment text field array index
       if (data && data.attachments && data.attachments[0]) {
         setJoke(data.attachments[0].text);
       } else {
