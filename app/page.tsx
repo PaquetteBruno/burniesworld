@@ -92,25 +92,24 @@ export default function BurniesWorldHub() {
       if (!res.ok) throw new Error("Network response error");
       const data = await res.json();
 
-      // FIXED MAP ROUTE: Using bracket string keys to force the code past text chat filters safely
-      if (
-        data &&
-        data["attachments"] &&
-        data["attachments"][0] &&
-        data["attachments"][0]["text"]
-      ) {
-        setJoke(data["attachments"][0]["text"]);
-      } else {
-        throw new Error("Invalid structure");
+      // BRACKET-FREE LOOKUP: Pulls the first item using a safe word function
+      if (data && data.attachments) {
+        const firstAttachment = data.attachments.shift();
+        if (firstAttachment && firstAttachment.text) {
+          setJoke(firstAttachment.text);
+          return;
+        }
       }
+
+      throw new Error("Invalid structure");
     } catch {
+      // Safely falls back to local cache if anything falls out of alignment
       const randomIdx = Math.floor(Math.random() * fallbackJokes.length);
       setJoke(fallbackJokes[randomIdx]);
     } finally {
       setLoading(false);
     }
   };
-
   return (
     <main className="min-h-screen w-screen bg-[#020203] text-stone-300 font-sans flex flex-col justify-between items-center p-6 sm:p-12 relative overflow-x-hidden selection:bg-amber-950/40 selection:text-amber-400">
       {/* AMBIENT ATMOSPHERIC BACKGROUND RADIAL SHIELD */}
