@@ -206,11 +206,48 @@ export default function BurniesWorldHub() {
       </div>
 
       {/* PORTAL COMPLIANCE ROOT FOOTER FOOTPRINT */}
-      <footer className="w-full text-center mt-12 sm:mt-16 z-10 select-none pointer-events-none">
-        <p className="text-[9px] font-mono tracking-widest text-stone-700 uppercase">
-          © {new Date().getFullYear()} BurniesWorld • All matrix nodes operate
-          completely serverless. Your browser. Your data. Your adventure.
-        </p>
+      <footer className="w-full flex flex-col items-center justify-center gap-4 mt-16 sm:mt-24 z-10 select-none">
+        {/* TOP ROW: BUTTON AND COMPLIANCE TEXT */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+          <div className="flex-shrink-0">
+            <a
+              href="https://ko-fi.com/brunopaquette"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-2 border border-stone-800/80 rounded-lg bg-[#070709] text-stone-300 hover:text-white hover:border-amber-900/60 hover:bg-amber-950/20 text-xs font-mono tracking-wider transition-all duration-300 flex items-center gap-2.5 cursor-pointer shadow-md hover:shadow-[0_0_15px_rgba(245,158,11,0.1)] group"
+            >
+              <span
+                className="text-[110%] inline-block transition-all duration-300 group-hover:animate-bounce"
+                style={{
+                  filter:
+                    "sepia(1) saturate(50) hue-rotate(10deg) brightness(1) drop-shadow(0 0 3px rgba(255, 196, 57, 0.26))",
+                }}
+              >
+                ☕
+              </span>
+
+              {/* TEXT MATCHING THE FONT & COLOR OF STORY CHOICES */}
+              <span className="font-serif text-sm tracking-wide text-stone-400 group-hover:text-amber-500 transition-colors duration-300">
+                Buy me a coffee
+                <span className="text-white-500 group-hover:text-amber-500 ml-1.5 transition-colors duration-300">
+                  ♥
+                </span>
+              </span>
+            </a>
+          </div>
+
+          <p className="text-[9px] font-mono tracking-[0.2em] text-stone-600 uppercase pointer-events-none text-center md:text-left">
+            • Contributions are 100% voluntary and strictly non-refundable.
+          </p>
+        </div>
+
+        {/* BOTTOM ROW: COPYRIGHT */}
+        <div className="text-center pointer-events-none mt-2">
+          <p className="text-[9px] font-mono tracking-[0.15em] text-stone-700 uppercase">
+            © {new Date().getFullYear()} BurniesWorld • All matrix nodes operate
+            completely serverless. Your browser. Your data. Your adventure.
+          </p>
+        </div>
       </footer>
     </main>
   );
