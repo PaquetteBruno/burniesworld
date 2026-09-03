@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Burnie's World - Enter the Unknown",
   description:
-    "Welcome to Burnie's World! Explore serverless text adventure horror games, jump scares, pranks and daily humor metrics.",
+    "Welcome to Burnie's World — explore browser games, interactive adventures, useful web tools, and a little daily humor.",
   keywords: [
     "You are the hero game",
     "Choose your path game",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Burnie's World | Hub Portal",
     description:
-      "Launch unique web application tools and psychological horror games directly from Burnie's central portal matrix.",
+      "Welcome to Burnie's World — explore browser games, interactive adventures, useful web tools, and a little daily humor.",
     url: "https://burniesworld.com",
     siteName: "BurniesWorld",
     type: "website",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Burnie's World Hub",
     description:
-      "Explore custom client-side tools and unique indie horror browser game networks.",
+      "Welcome to Burnie's World — explore browser games, interactive adventures, useful web tools, and a little daily humor.",
   },
 };
 
@@ -58,20 +58,20 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <Script
-          src="https://googletagmanager.com/gtag/js?id=G-NFGSB8WP8E"
-          strategy="afterInteractive"
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-NFGSB8WP8E"
         />
-
-        {/* NATIVE INITIALIZATION ROUTE CODE BLOCK */}
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
+        <Script
+          id="google-analytics"
+          dangerouslySetInnerHTML={{
+            __html: `
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag(){window.dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-NFGSB8WP8E');
-    `}
-        </Script>
+    `,
+          }}
+        />
       </head>
       <body className="antialiased">{children}</body>
     </html>

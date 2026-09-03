@@ -7,7 +7,7 @@ interface ProjectTileProps {
   title: string;
   description: string;
   linkUrl: string;
-  status: "live" | "development" | "coming-soon";
+  status: "live" | "development" | "coming-soon" | "in-progress"; // Added in-progress status
   accentColor: string;
   icon: string;
 }
@@ -20,15 +20,18 @@ function ProjectTile({
   accentColor,
   icon,
 }: ProjectTileProps) {
+  // Determine if the tile should accept user pointer interaction
+  const isInteractive = status === "live" || status === "development";
+
   return (
     <a
-      href={linkUrl}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={isInteractive ? linkUrl : undefined}
+      target={isInteractive ? "_blank" : undefined}
+      rel={isInteractive ? "noopener noreferrer" : undefined}
       className={`relative p-6 border rounded-xl bg-stone-900/40 transition-all duration-500 flex flex-col justify-between group h-56 select-none ${
-        status === "live" || status === "development"
+        isInteractive
           ? "border-stone-800 hover:bg-stone-950/20 cursor-pointer shadow-md"
-          : "border-stone-900/60 opacity-60 cursor-not-allowed pointer-events-none"
+          : "border-stone-900/40 opacity-70 cursor-not-allowed"
       }`}
     >
       {/* Dynamic Hover Border Glow Accent */}
@@ -52,7 +55,7 @@ function ProjectTile({
               color: accentColor,
             }}
           >
-            System Live
+            {status === "in-progress" ? "In Progress" : "System Live"}
           </span>
         </div>
         <h2 className="text-lg font-bold font-serif tracking-wide text-stone-200 group-hover:text-stone-100 transition-colors">
@@ -64,8 +67,15 @@ function ProjectTile({
       </div>
 
       <div className="text-xs font-mono tracking-wider text-right transition-colors duration-300 text-stone-500">
-        <span className="group-hover:text-amber-500 transition-colors duration-300">
-          Launch Reality →
+        <span
+          className={
+            isInteractive
+              ? "group-hover:text-amber-500 transition-colors duration-300"
+              : ""
+          }
+          style={!isInteractive ? { color: `${accentColor}80` } : {}}
+        >
+          {status === "in-progress" ? "Exploring Soon..." : "Launch Reality →"}
         </span>
       </div>
     </a>
@@ -146,7 +156,7 @@ export default function BurniesWorldHub() {
         </header>
 
         {/* REUSEABLE PORTAL LINK TILES DECK */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 sm:mb-16">
+        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 sm:mb-16">
           <ProjectTile
             title="The Abandoned Mine"
             description="A high-tension psychological survival text horror game loop. Monitor your sanity metrics, guard your lantern oil reserves, and survive the dark depths."
@@ -154,6 +164,14 @@ export default function BurniesWorldHub() {
             status="live"
             accentColor="#d97706"
             icon="🪓"
+          />
+          <ProjectTile
+            title="The Lost Jungle"
+            description="An untamed text adventure tracking through dense, volatile ecosystems. Balance your hydration, map your coordinates, and avoid hidden apex predators."
+            linkUrl="#"
+            status="in-progress"
+            accentColor="#10b981"
+            icon="🌿"
           />
           <ProjectTile
             title="AnythingToPDF Easy"
@@ -191,7 +209,7 @@ export default function BurniesWorldHub() {
       <footer className="w-full text-center mt-12 sm:mt-16 z-10 select-none pointer-events-none">
         <p className="text-[9px] font-mono tracking-widest text-stone-700 uppercase">
           © {new Date().getFullYear()} BurniesWorld • All matrix nodes operate
-          completely serverless.
+          completely serverless. Your browser. Your data. Your adventure.
         </p>
       </footer>
     </main>
