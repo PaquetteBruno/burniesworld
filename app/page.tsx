@@ -182,7 +182,7 @@ export default function BurniesWorldHub() {
             disabled={loading}
             className="mt-6 px-4 py-1.5 border border-stone-800 rounded bg-[#070709] text-stone-500 hover:text-amber-500 hover:border-amber-900/60 font-mono text-xs tracking-wider transition-all duration-300 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed select-none"
           >
-            {loading ? "Re-linking Grid..." : "Request Alternative Sync"}
+            {loading ? "Re-linking Grid..." : "Request Another Transmission"}
           </button>
         </section>
       </div>

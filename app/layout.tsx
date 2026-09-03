@@ -4,17 +4,30 @@ import "./globals.css";
 
 // CLEAN ALL-ENGLISH PORTAL MASTER METADATA
 export const metadata: Metadata = {
-  title: "Burnie's World - Independent Web Portal & Gaming Hub",
+  title: "Burnie's World -  Enter the Unknown",
   description:
-    "Welcome to Burnie's World! Explore serverless web tools, independent text adventure horror games, browser frameworks, and daily humor metrics.",
+    "Welcome to Burnie's World! Explore serverless text adventure horror games, jump scares, pranks and daily humor metrics.",
   keywords: [
+    "You are the hero game",
+    "Choose your path game",
+    "Jump scares",
+    "The Abandoned Mine",
+    "Abandoned Mine horror game",
+    "Psychological horror text adventure",
+    "Choose your own adventure horror",
+    "Browser horror game",
+    "Free indie horror games",
+    "Interactive survival fiction",
+    "Jump scare browser game",
+    "Retro text adventure game",
+    "Burnies World horror game",
     "Burnies World",
     "Burnie games",
-    "browser tools hub",
-    "free web tools",
+    "Browser tools hub",
+    "Free web tools",
     "indie gaming portal",
     "AnythingToPDF Easy",
-    "serverless web apps",
+    "Serverless web games and apps",
   ],
   alternates: {
     canonical: "https://burniesworld.com",
