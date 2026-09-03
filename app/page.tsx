@@ -137,6 +137,14 @@ export default function BurniesWorldHub() {
     fetchDailyJoke();
   }, []);
 
+  useEffect(() => {
+    // Check if the URL contains tracking parameters
+    if (window.location.search.includes("_gl=")) {
+      // Re-write the browser history entry to just the clean path name
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
+
   return (
     <main className="min-h-screen w-screen bg-[#020203] text-stone-300 font-sans flex flex-col justify-between items-center p-6 sm:p-12 relative overflow-x-hidden selection:bg-amber-950/40 selection:text-amber-400">
       {/* AMBIENT ATMOSPHERIC BACKGROUND RADIAL SHIELD */}
