@@ -4,7 +4,7 @@ import "./globals.css";
 
 // CLEAN ALL-ENGLISH PORTAL MASTER METADATA
 export const metadata: Metadata = {
-  title: "Burnie's World -  Enter the Unknown",
+  title: "Burnie's World - Enter the Unknown",
   description:
     "Welcome to Burnie's World! Explore serverless text adventure horror games, jump scares, pranks and daily humor metrics.",
   keywords: [
