@@ -25,7 +25,7 @@ function ProjectTile({
   return (
     <a
       href={isInteractive ? linkUrl : undefined}
-      target={isInteractive ? "_blank" : undefined}
+      target={undefined}
       rel={isInteractive ? "noopener noreferrer" : undefined}
       className={`relative p-5 border rounded-xl bg-stone-900/40 transition-all duration-500 flex flex-col justify-between group select-none min-h-[11rem] ${
         isInteractive
