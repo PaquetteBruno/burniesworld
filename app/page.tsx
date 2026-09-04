@@ -139,21 +139,21 @@ export default function BurniesWorldHub() {
   }, []);
 
   return (
-    <main className="min-h-screen w-full bg-[#020203] text-stone-300 font-sans flex flex-col justify-between items-center p-4 md:p-6 lg:px-12 relative overflow-x-hidden selection:bg-amber-950/40 selection:text-amber-400">
+    // 1. UPDATED MAIN TAG (Removed rigid top/bottom padding constraints)
+    <main className="min-h-screen w-full bg-[#020203] text-stone-300 font-sans flex flex-col justify-between items-center px-4 md:px-12 pb-4 relative overflow-x-hidden selection:bg-amber-950/40 selection:text-amber-400">
       {/* AMBIENT ATMOSPHERIC BACKGROUND RADIAL SHIELD */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.02)_0%,rgba(0,0,0,0)_70%)] pointer-events-none z-0" />
 
-      {/* MAIN CONTENT WRAPPER */}
-      <div className="w-full max-w-5xl z-10 flex flex-col items-center pt-12 md:pt-20 pb-8 flex-grow">
-        {/* HEADER BRAND BLOCK */}
-        <header className="text-center mb-6 md:mb-10 select-none">
-          <p className="text-[10px] font-mono tracking-[0.5em] text-stone-600 uppercase mb-1.5">
+      {/* 2. UPDATED MAIN CONTENT WRAPPER (Uses dynamic viewport heights to fit screens) */}
+      <div className="w-full max-w-5xl z-10 flex flex-col items-center pt-[4vh] md:pt-[6vh] pb-6 flex-grow">
+        <header className="text-center mb-12 sm:mb-16 select-none">
+          <p className="text-[10px] font-mono tracking-[0.5em] text-stone-600 uppercase mb-2">
             Central Terminal // Matrix Portal
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-widest font-serif text-stone-200 uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-widest font-serif text-stone-200 uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
             Burnie&apos;s World
           </h1>
-          <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-stone-700 to-transparent mx-auto mt-3" />
+          <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-stone-700 to-transparent mx-auto mt-4" />
         </header>
 
         {/* REUSABLE PORTAL LINK TILES DECK */}
