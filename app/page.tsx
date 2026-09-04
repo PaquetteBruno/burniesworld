@@ -137,6 +137,14 @@ export default function BurniesWorldHub() {
     fetchDailyJoke();
   }, []);
 
+  useEffect(() => {
+    // Check if the URL contains tracking parameters
+    if (window.location.search.includes("_gl=")) {
+      // Re-write the browser history entry to just the clean path name
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
+
   return (
     // 1. UPDATED MAIN TAG (Removed rigid top/bottom padding constraints)
     <main className="min-h-screen w-full bg-[#020203] text-stone-300 font-sans flex flex-col justify-between items-center px-4 md:px-12 pb-4 relative overflow-x-hidden selection:bg-amber-950/40 selection:text-amber-400">
