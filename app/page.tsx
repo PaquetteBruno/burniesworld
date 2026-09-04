@@ -161,7 +161,7 @@ export default function BurniesWorldHub() {
           <ProjectTile
             title="The Abandoned Mine"
             description="A high-tension psychological survival text horror game loop. Monitor your sanity metrics, guard your lantern oil reserves, and survive the dark depths."
-            linkUrl="https://burniesworld.com"
+            linkUrl="https://abandonedmine.burniesworld.com"
             status="live"
             accentColor="#d97706"
             icon="🪓"
