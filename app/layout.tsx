@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import Footer from "@/components/layout/Footer";
 
 // CLEAN ALL-ENGLISH PORTAL MASTER METADATA
 export const metadata: Metadata = {
@@ -73,7 +74,11 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased min-h-screen flex flex-col">
+        <div className="flex-1 bg-[#020203]">{children}</div>
+
+        <Footer />
+      </body>
     </html>
   );
 }

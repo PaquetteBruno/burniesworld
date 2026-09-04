@@ -53,7 +53,7 @@ function ProjectTile({
               color: accentColor,
             }}
           >
-            {status === "in-progress" ? "In Progress" : "System Live"}
+            {status === "development" ? "In Progress" : "System Live"}
           </span>
         </div>
         <div>
@@ -75,7 +75,7 @@ function ProjectTile({
           }
           style={!isInteractive ? { color: `${accentColor}80` } : {}}
         >
-          {status === "in-progress" ? "Exploring Soon..." : "Launch Reality →"}
+          {status === "development" ? "Exploring Soon..." : "Launch Reality →"}
         </span>
       </div>
     </a>
@@ -147,12 +147,12 @@ export default function BurniesWorldHub() {
 
   return (
     // 1. UPDATED MAIN TAG (Removed rigid top/bottom padding constraints)
-    <main className="min-h-screen w-full bg-[#020203] text-stone-300 font-sans flex flex-col justify-between items-center px-4 md:px-12 pb-4 relative overflow-x-hidden selection:bg-amber-950/40 selection:text-amber-400">
+    <main className="w-full bg-[#020203] text-stone-300 font-sans flex flex-col justify-between items-center px-4 md:px-12 pb-4 relative overflow-x-hidden selection:bg-amber-950/40 selection:text-amber-400">
       {/* AMBIENT ATMOSPHERIC BACKGROUND RADIAL SHIELD */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.02)_0%,rgba(0,0,0,0)_70%)] pointer-events-none z-0" />
 
       {/* 2. UPDATED MAIN CONTENT WRAPPER (Uses dynamic viewport heights to fit screens) */}
-      <div className="w-full max-w-5xl z-10 flex flex-col items-center pt-[4vh] md:pt-[6vh] pb-6 flex-grow">
+      <div className="w-full max-w-5xl z-10 flex flex-col items-center pt-[4vh] md:pt-[6vh] pb-6">
         <header className="text-center mb-12 sm:mb-16 select-none">
           <p className="text-[10px] font-mono tracking-[0.5em] text-stone-600 uppercase mb-2">
             Central Terminal // Matrix Portal
@@ -175,8 +175,8 @@ export default function BurniesWorldHub() {
           <ProjectTile
             title="The Lost Jungle"
             description="An untamed text adventure tracking through dense, volatile ecosystems. Balance your hydration, map your coordinates, and avoid hidden apex predators."
-            linkUrl="#"
-            status="in-progress"
+            linkUrl="/games/lost-jungle"
+            status="development"
             accentColor="#10b981"
             icon="🌿"
           />
@@ -211,50 +211,6 @@ export default function BurniesWorldHub() {
           </button>
         </section>
       </div>
-
-      {/* UNIFIED RESPONSIVE FOOTER STRUCTURE */}
-      <footer className="w-full max-w-5xl z-10 select-none flex flex-col items-center gap-3 pt-3 border-t border-stone-950/40">
-        {/* ROW 1: BUTTON AND DISCLAIMER */}
-        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-center sm:text-left">
-          <div className="flex-shrink-0">
-            <a
-              href="https://ko-fi.com/brunopaquette"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-1.5 border border-stone-800/80 rounded-lg bg-[#070709] text-stone-300 hover:text-white hover:border-amber-900/60 hover:bg-amber-950/20 text-xs font-mono tracking-wider transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-md group"
-            >
-              <span
-                className="text-[110%] inline-block transition-all duration-300 group-hover:animate-bounce"
-                style={{
-                  filter:
-                    "sepia(1) saturate(50) hue-rotate(10deg) brightness(1) drop-shadow(0 0 3px rgba(255, 196, 57, 0.26))",
-                }}
-              >
-                ☕
-              </span>
-
-              {/* TEXT MATCHING THE FONT & COLOR OF STORY CHOICES */}
-              <span className="font-serif text-sm tracking-wide text-stone-400 group-hover:text-amber-500 transition-colors duration-300">
-                Buy me a coffee
-                <span className="text-white-500 group-hover:text-amber-500 ml-1.5 transition-colors duration-300">
-                  ♥
-                </span>
-              </span>
-            </a>
-          </div>
-          <p className="text-[9px] font-mono tracking-[0.2em] text-stone-600 uppercase pointer-events-none">
-            • Contributions are 100% voluntary and strictly non-refundable.
-          </p>
-        </div>
-
-        {/* ROW 2: COPYRIGHT */}
-        <div className="text-center pointer-events-none w-full">
-          <p className="text-[9px] font-mono tracking-[0.15em] text-stone-700 uppercase leading-relaxed">
-            © {new Date().getFullYear()} BurniesWorld • All matrix nodes operate
-            completely serverless. Your browser. Your data. Your adventure.
-          </p>
-        </div>
-      </footer>
     </main>
   );
 }
