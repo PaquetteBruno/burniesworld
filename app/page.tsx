@@ -33,7 +33,6 @@ function ProjectTile({
           : "border-stone-900/40 opacity-70 cursor-not-allowed"
       }`}
     >
-      {/* Dynamic Hover Border Glow Accent */}
       <div
         className="absolute inset-0 border border-transparent rounded-xl transition-all duration-500 group-hover:opacity-100 opacity-0 pointer-events-none"
         style={{
@@ -155,7 +154,6 @@ export default function BurniesWorldHub() {
           </h1>
           <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-stone-700 to-transparent mx-auto mt-4" />
         </header>
-
         {/* REUSABLE PORTAL LINK TILES DECK */}
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 md:mb-10">
           <ProjectTile
