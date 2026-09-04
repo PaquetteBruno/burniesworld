@@ -212,7 +212,7 @@ export default function BurniesWorldHub() {
         <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-center sm:text-left">
           <div className="flex-shrink-0">
             <a
-              href="https://ko-fi.com"
+              href="https://ko-fi.com/brunopaquette"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-1.5 border border-stone-800/80 rounded-lg bg-[#070709] text-stone-300 hover:text-white hover:border-amber-900/60 hover:bg-amber-950/20 text-xs font-mono tracking-wider transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-md group"
