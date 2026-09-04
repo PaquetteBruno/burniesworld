@@ -52,12 +52,12 @@ export default function GameEngine({
 
   return (
     <main
-      className="min-h-[calc(100vh-75px)] w-full bg-cover bg-center bg-no-repeat flex items-center justify-center p-6"
+      className="h-[calc(100vh-75px)] w-full bg-cover bg-center bg-no-repeat flex items-center justify-center p-6"
       style={{
         backgroundImage: `url(${background})`,
       }}
     >
-      <section className="relative w-full min-h-[85vh] bg-black/85 border border-stone-800/80 rounded-xl shadow-2xl flex flex-col">
+      <section className="relative w-full h-full bg-black/85 border border-stone-800/80 rounded-xl shadow-2xl flex flex-col">
         {/* GAME HEADER */}
         <header className="relative border-b border-stone-900 px-6 py-8 text-center">
           <h1 className="text-4xl md:text-5xl font-serif font-bold tracking-widest text-stone-200 uppercase">
@@ -89,14 +89,14 @@ export default function GameEngine({
         </header>
 
         {/* GAME INTRODUCTION */}
-        <div className="flex-1 flex items-center justify-center px-6 py-12">
+        <div className="flex-1 min-h-0 flex items-center justify-center px-6 py-6">
           <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* GAME IMAGE */}
-            <div className="w-full">
+            <div className="w-full flex justify-center">
               <img
                 src={image}
                 alt={title}
-                className="w-full rounded-lg border border-stone-800 shadow-xl"
+                className="max-w-full max-h-[45vh] object-contain rounded-lg border border-stone-800 shadow-xl"
               />
             </div>
 
@@ -105,7 +105,7 @@ export default function GameEngine({
               {introduction.map((paragraph, index) => (
                 <p
                   key={index}
-                  className="font-serif italic text-lg leading-relaxed mb-4 last:mb-0"
+                  className="font-serif italic text-[clamp(0.8rem,1.7vh,1.125rem)] leading-relaxed mb-3 last:mb-0"
                 >
                   {paragraph}
                 </p>
