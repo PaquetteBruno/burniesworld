@@ -234,7 +234,6 @@ export default function BurniesWorldHub() {
                 ☕
               </span>
 
-              {/* TEXT MATCHING THE FONT & COLOR OF STORY CHOICES */}
               <span className="font-serif text-sm tracking-wide text-stone-400 group-hover:text-amber-500 transition-colors duration-300">
                 Buy me a coffee
                 <span className="text-white-500 group-hover:text-amber-500 ml-1.5 transition-colors duration-300">
@@ -249,7 +248,6 @@ export default function BurniesWorldHub() {
           </p>
         </div>
 
-        {/* BOTTOM ROW: COPYRIGHT */}
         <div className="text-center pointer-events-none mt-2">
           <p className="text-[9px] font-mono tracking-[0.15em] text-stone-700 uppercase">
             © {new Date().getFullYear()} BurniesWorld • All matrix nodes operate
